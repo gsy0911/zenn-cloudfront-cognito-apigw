@@ -14,10 +14,20 @@ import {
   aws_s3_deployment,
   aws_ssm,
 } from 'aws-cdk-lib';
-import {ICloudFrontStack} from './CloudFrontStack';
 import * as path from "path";
 
-export interface ICloudFrontCognitoStack extends ICloudFrontStack {
+export interface ICloudFrontCognitoStack {
+  s3: {
+    bucketName: string
+    referer: string
+  }
+  cloudfront: {
+    /** us-east-1のACMのARN*/
+    certificate: `arn:aws:acm:us-east-1:${string}:certificate/${string}`
+    domainNames: string[]
+    route53DomainName: string
+    route53RecordName: string
+  }
   lambdaEdgeStackId: string
 }
 

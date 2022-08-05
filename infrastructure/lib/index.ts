@@ -1,5 +1,4 @@
 export { CognitoStack } from './CognitoStack';
-export { CloudFrontStack } from './CloudFrontStack';
 export { CloudFrontCognitoStack } from './CloudFrontCognitoStack';
 export { LambdaEdgeAuthStack } from './LambdaEdgeStack';
 export {
