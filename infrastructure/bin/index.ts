@@ -21,10 +21,18 @@ const cognitoLambdaEdge = new lib.LambdaEdgeAuthStack(
   {environment: "prod"},
   {env: lib.envUsEast1, description}
 )
-const cloudFront1Cognito = new lib.CloudFrontCognitoStack(
+// CloudFront
+const cloudFrontCognito = new lib.CloudFrontCognitoStack(
   app,
   `${idPrefix}-cloudfront-cognito`,
   {...lib.paramsCloudFrontStack, lambdaEdgeStackId: `${idPrefix}-lambda-edge`},
+  {env: lib.envApNortheast1, description}
+)
+// API Gateway + CloudFront
+const cloudFrontApiGateway = new lib.LambdaApigwCfIntegratedStack(
+  app,
+  `${idPrefix}-cloudfront-apigw`,
+  lib.paramsLambdaApigwCfIntegrated,
   {env: lib.envApNortheast1, description}
 )
 
@@ -32,7 +40,8 @@ Tags.of(iamRoles).add("project", idPrefix)
 Tags.of(cognito).add("project", idPrefix)
 Tags.of(cognitoIdp).add("project", idPrefix)
 Tags.of(cognitoLambdaEdge).add("project", idPrefix)
-Tags.of(cloudFront1Cognito).add("project", idPrefix)
+Tags.of(cloudFrontCognito).add("project", idPrefix)
+Tags.of(cloudFrontApiGateway).add("project", idPrefix)
 
 
 app.synth();
