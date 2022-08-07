@@ -9,3 +9,4 @@ cdk.out
 params.ts
 cdk.context.json
 **/configuration.json
+**/role_mapping_configuration.json
