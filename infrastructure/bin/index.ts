@@ -11,7 +11,9 @@ const description = "example@1.0.0"
 
 // Cognito And CognitoIdp
 const iamRoles = new lib.AuthorizationRolesStack(app, `${idPrefix}-roles`, lib.paramsAuthorizationRoles, {description})
+// デプロイ後にグループの作成が必要
 const cognito = new lib.CognitoStack(app, `${idPrefix}-cognito`, lib.paramsCognitoStack, {description})
+// デプロイ前に値のparamsの追記が必要
 const cognitoIdp = new lib.CognitoIdentityPoolStack(app, `${idPrefix}-cognito-idp`, lib.paramsCognitoIdentityPool, {description})
 
 // Lambda@Edge
